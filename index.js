@@ -164,10 +164,30 @@ class Instructor extends Lambdasian{
   }
 
   //for stretch
-  // gradeAssignment(student){
-  //   let modifier = Math.floor(Math.random()*1);
-  //   console.log(modifier);
-  // }
+  gradeAssignment(student){
+    const modifier = Math.floor(Math.random()*2);
+    console.log(modifier);
+
+    //adds grade to the students total if the total is less than hundred
+    if (modifier===0 && student.grade<100){
+      let curGrade = Math.floor((Math.random()*3)+1);
+      // console.log(curGrade);
+      student.grade+=curGrade;
+    }
+
+    else {
+      let curGrade = Math.floor((Math.random()*3)+1);
+      // console.log(curGrade);
+      student.grade-=curGrade;
+    }
+
+    // console.log(student.grade);
+    
+
+    // if (modifier===0){
+      
+    // }
+  }
 }
 
 /*
@@ -191,7 +211,9 @@ class Student extends Lambdasian{
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
-    // this.grade=attributes.grade;
+
+    //for stretch
+    this.grade=attributes.grade;
   }
 
   listSubjects(){
@@ -225,17 +247,32 @@ class Student extends Lambdasian{
     return `${this.name}${toDo}${subject}`;
   }
 
+  //for stretch goal
+  graduate(){
+    if (this.grade>70){
+      return `${this.name} has graduated!`
+    }
+
+    return `${this.name} is not ready to graduate. Do more assignments and try again!`
+  }
+
 }
 
-// const myStudent = new Student ({
-//   favSubjects:['HTML','CSS','JS'],
-//   grade:70
-// // })
-// console.log(myStudent.favSubjects);
-// myStudent.listSubjects();
+const myStudent = new Student ({
+  name: 'Meghan',
+  favSubjects:['HTML','CSS','JS'],
+  grade:70
+ })
+console.log(myStudent.favSubjects);
+myStudent.listSubjects();
 
-// const myInstructor = new Instructor();
-// myInstructor.gradeAssignment(myStudent);
+const myInstructor = new Instructor({
+
+});
+
+console.log(myStudent.grade);
+myInstructor.gradeAssignment(myStudent);
+console.log(myStudent.graduate());
 
 /*
   TASK 6
